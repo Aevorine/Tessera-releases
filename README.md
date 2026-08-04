@@ -77,6 +77,23 @@ status colours — comfort should not cost you the ability to see what went wron
 **Six languages** — English, 简体中文, Français, Español, Русский, العربية — switchable
 anywhere, including on the login screen.
 
+## Looking for an alternative to…
+
+Tessera covers, in one offline app, what people usually install three or four separate tools for:
+
+- **CCleaner / BleachBit / Wise Disk Cleaner** — junk files, browser data, registry leftovers,
+  startup manager, duplicate finder, C: drive slimming. Every entry says what it is and what
+  you lose by removing it, and a dry run shows you exactly what would happen first.
+- **KeePass / Bitwarden / 1Password** — a local password manager with TOTP built in. No account,
+  no sync server, no subscription.
+- **VeraCrypt / 7-Zip AES** — file and folder encryption, post-quantum by default.
+- **Ditto / ClipClip** — clipboard history with search, pinning and a global hotkey.
+- **Obsidian / Notepad++ for quick notes** — Markdown notes with images and full-text search,
+  encrypted at rest.
+- **AirDroid / LocalSend** — LAN-only clipboard and file sync with an Android phone or tablet.
+
+Free and open source (AGPL-3.0), Windows 10/11 64-bit.
+
 ## Installing: what Windows and Android will ask
 
 **Windows.** Builds are signed with a self-signed certificate, so SmartScreen may warn

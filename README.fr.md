@@ -87,6 +87,23 @@ ce qui a échoué.
 **Six langues** — English, 简体中文, Français, Español, Русский, العربية — commutables partout,
 y compris sur l'écran de connexion.
 
+## Vous cherchez une alternative à…
+
+Tessera couvre, dans une seule application hors ligne, ce pour quoi on installe d'habitude trois ou quatre outils :
+
+- **CCleaner / BleachBit / Wise Disk Cleaner** — fichiers inutiles, données de navigation,
+  restes de registre, gestionnaire de démarrage, doublons, allègement du disque C:.
+  Chaque entrée explique ce qu'elle est et ce que vous perdez ; une simulation montre
+  d'abord ce qui se passerait.
+- **KeePass / Bitwarden / 1Password** — gestionnaire de mots de passe local avec TOTP intégré.
+  Pas de compte, pas de serveur, pas d'abonnement.
+- **VeraCrypt / 7-Zip AES** — chiffrement de fichiers et dossiers, post-quantique par défaut.
+- **Ditto / ClipClip** — historique du presse-papiers avec recherche, épinglage et raccourci global.
+- **Obsidian / prise de notes rapide** — notes Markdown avec images et recherche plein texte, chiffrées au repos.
+- **AirDroid / LocalSend** — synchronisation presse-papiers et fichiers en réseau local avec Android.
+
+Gratuit et open source (AGPL-3.0), Windows 10/11 64 bits.
+
 ## À l'installation : ce que Windows et Android vont demander
 
 **Windows.** Les builds sont signés avec un certificat auto-signé, donc SmartScreen peut

@@ -83,6 +83,22 @@ modo Simple o Profesional, y un modo de confort visual que desplaza la temperatu
 **Seis idiomas** — English, 简体中文, Français, Español, Русский, العربية — conmutables en
 cualquier parte, incluida la pantalla de inicio de sesión.
 
+## ¿Buscas una alternativa a…?
+
+Tessera cubre en una sola aplicación sin conexión lo que normalmente requiere tres o cuatro programas:
+
+- **CCleaner / BleachBit / Wise Disk Cleaner** — archivos basura, datos del navegador, restos
+  del registro, gestor de inicio, duplicados, adelgazamiento del disco C:. Cada elemento explica
+  qué es y qué pierdes al borrarlo, y una simulación te enseña antes lo que pasaría.
+- **KeePass / Bitwarden / 1Password** — gestor de contraseñas local con TOTP incorporado.
+  Sin cuenta, sin servidor, sin suscripción.
+- **VeraCrypt / 7-Zip AES** — cifrado de archivos y carpetas, poscuántico por defecto.
+- **Ditto / ClipClip** — historial del portapapeles con búsqueda, fijado y atajo global.
+- **Obsidian / notas rápidas** — notas Markdown con imágenes y búsqueda de texto completo, cifradas en disco.
+- **AirDroid / LocalSend** — sincronización de portapapeles y archivos solo por red local con Android.
+
+Gratis y de código abierto (AGPL-3.0), Windows 10/11 de 64 bits.
+
 ## Al instalar: qué te preguntarán Windows y Android
 
 **Windows.** Las compilaciones están firmadas con un certificado autofirmado, por lo que
