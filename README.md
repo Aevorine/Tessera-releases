@@ -1,41 +1,101 @@
-# Tessera · 安装包
+# Tessera — encrypted vault + PC cleanup for Windows
 
-这里存放 Tessera 的正式安装包。**Windows 桌面端和安卓端应用内的「检查更新」功能就是查这个仓库**，
-所以它必须是公开的——应用检查更新时不带任何账号凭据，私有仓库对它来说和不存在没有区别。
+**English** · [简体中文](README.zh-CN.md) · [Français](README.fr.md) · [Español](README.es.md) · [Русский](README.ru.md) · [العربية](README.ar.md)
 
-源代码不在这里。
+[![Download](https://img.shields.io/badge/download-latest%20release-brightgreen.svg)](../../releases/latest)
+[![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11%20x64-lightgrey.svg)]()
+[![Android](https://img.shields.io/badge/android-companion%20app-green.svg)](../../releases/latest)
+[![Languages](https://img.shields.io/badge/languages-6-blue.svg)]()
 
-## 下载哪一个
+**Your files, passwords, clipboard and notes behind one unlock — plus a cleanup suite that
+keeps the machine underneath them tidy.** Nothing is uploaded, nothing phones home, and
+nothing leaves your computer unless you explicitly set it up to.
 
-到 [Releases](../../releases/latest) 页面按你的设备挑：
+Free. Offline-first. Windows 10/11 64-bit, with an Android companion for clipboard and files.
 
-| 文件 | 给谁 |
+## Download
+
+**→ [Get the latest release](../../releases/latest)**
+
+| File | Who it's for |
 | --- | --- |
-| `Tessera-Setup.exe` | Windows。正规安装，可以选安装位置，有卸载项。**多数人选这个。** |
-| `Tessera.exe` | Windows 免安装版。放哪都能跑，U 盘也行，不写注册表。 |
-| `Tessera-CrossDevice-<版本>.apk` | 安卓手机 / 平板。 |
+| `Tessera-Setup.exe` | Windows installer — pick a location, gets an uninstall entry. **Most people want this.** |
+| `Tessera.exe` | Portable. Runs from anywhere including a USB stick, touches no registry. |
+| `Tessera-CrossDevice-<version>.apk` | Android phone or tablet (clipboard, files, sync). |
 
-装好之后就不用再来这里了：应用会自己发现新版本并提示你。
+After installing you never need to come back here — the app finds new versions on its own.
 
-## 关于安装时的安全提示
+## What you get
 
-**Windows**：安装包用的是自签名证书，SmartScreen 可能会拦一下（「Windows 已保护你的电脑」）。
-点「更多信息」→「仍要运行」即可。这不是说文件有问题，只是说这个证书没有向商业 CA 付费购买。
+### An encrypted vault
 
-应用内更新走的是同一把签名密钥：下载完成后会核对包里的签名是不是我们这一把，**对不上就直接删掉、
-绝不安装**，不存在"这次先算了"的降级路径。
+- **Files** — encrypt anything into a single `.ivault`. Post-quantum by default (AES-256-GCM
+  for the content, the per-file key additionally wrapped by ML-KEM-1024), or classic
+  AES-256-GCM / ChaCha20-Poly1305. Filenames and checksums live *inside* the encrypted
+  header, so a stolen container reveals neither.
+- **Passwords** — full manager, import from a Chrome/Edge/Firefox CSV, and the plaintext CSV
+  is securely deleted afterwards.
+- **Clipboard history** — auto-classified (URL / email / phone / formula / code / text),
+  pinning, search, per-app blacklist, and a global `Ctrl+Shift+V` panel.
+- **Notes** — Markdown with images, nested categories, full-text search. Every note returns
+  you to where you stopped reading. A 4 MB note shows its first screen in about 40 ms.
+- **Five ways to unlock, any one is enough** — password · email code · authenticator (TOTP) ·
+  Windows Hello (face / fingerprint / PIN) · one-time recovery key.
 
-**安卓**：首次通过应用内更新安装时，系统会请你为 Tessera 打开「允许安装未知应用」。
-安卓不允许旁加载的应用静默安装任何东西，最后那一步的确认框永远由系统弹出，
-应用绕不过去，也不应该能绕过。
+### A cleanup suite that tells you the truth
 
-覆盖安装要求签名一致，这是安卓系统强制的——用别的密钥签出来的包会被系统直接拒绝，
-所以别人冒充不了这个应用。
+- Junk files, browser caches, privacy traces, driver leftovers, duplicate and large files,
+  C: drive slimming, startup manager, right-click menu, popup blocker, and 42 small utilities.
+- **Three scan depths** — standard (~15 s), deep, and extreme (all 21 categories).
+- **A dry run walks the real code path without touching a byte**, and reports what each drive
+  would actually gain.
+- **Every category says which kind of empty it found** — genuinely clean, blocked by
+  permissions, or never actually ran — and how many locations it checked to get there.
+  "Nothing found" and "it never ran" are not allowed to look the same.
+- **"Freed" means freed.** Files sent to the Recycle Bin are counted *separately* from space
+  actually reclaimed, and the app re-measures the drive afterwards so you can check its
+  arithmetic against what Windows reports.
+- Five judgements on every item — *Windows needs this · a driver · something you use ·
+  optional · an advertisement* — with the reason written out. What Windows needs is locked,
+  and the backend refuses it even if asked.
+- Registry keys, startup entries and menu handlers are **disabled with a backup**, never
+  deleted. If the backup export fails, nothing is changed at all.
 
-## 校验下载的文件
+### Phone ↔ PC, over your own LAN
 
-每个 release 的资产列表里，GitHub 会显示各文件的 SHA-256。应用内更新会自动比对，
-手动下载的话可以自己核一下：
+Copy on your phone, paste on your PC, and the other way round — text, rich text, code, maths
+formulas and images keep their formatting. Send files or whole folders, resumable and
+end-to-end encrypted. Pair with a six-digit code, a QR code, a link, or off a nearby-devices
+list. Traffic stays on your local network.
+
+### Interface
+
+One design language across every screen. Eight accent colours, light/dark/system, Simple or
+Professional depth, and an eye-comfort mode that shifts colour temperature **without** touching
+status colours — comfort should not cost you the ability to see what went wrong.
+
+**Six languages** — English, 简体中文, Français, Español, Русский, العربية — switchable
+anywhere, including on the login screen.
+
+## Installing: what Windows and Android will ask
+
+**Windows.** Builds are signed with a self-signed certificate, so SmartScreen may warn
+("Windows protected your PC"). Click **More info → Run anyway**. That warning is about the
+certificate not being bought from a commercial CA — not about the file being altered.
+
+In-app updates use the same signing key: after downloading, the app checks the signature is
+*this* key, and **deletes the file rather than installing if it is not**. There is no
+"proceed anyway" path.
+
+**Android.** The first in-app update asks you to allow installing unknown apps for Tessera.
+Android never lets a sideloaded app install anything silently — that final confirmation is
+always the system's, and the app cannot bypass it. Upgrades require a matching signature,
+enforced by Android itself, so nobody else can push a build that impersonates this app.
+
+## Verify what you downloaded
+
+GitHub shows a SHA-256 for every asset on the release page. In-app updates compare it
+automatically; if you downloaded by hand:
 
 ```powershell
 Get-FileHash .\Tessera-Setup.exe -Algorithm SHA256
@@ -45,6 +105,27 @@ Get-FileHash .\Tessera-Setup.exe -Algorithm SHA256
 sha256sum Tessera-CrossDevice-*.apk
 ```
 
-## 许可
+You can also right-click the exe → **Properties → Digital Signatures** to see the signature.
 
-Tessera 以 AGPL-3.0 发布，另有商业授权可选。完整条款随安装包分发，也可在应用的「关于」页查看。
+## System requirements
+
+Windows 10 or 11, 64-bit. Several features are bound to Windows APIs (Windows Hello, shell
+integration, global file hotkeys). Android companion: Android 8.0 or newer.
+
+## Questions
+
+**Is the source public?** Not at this time. This repository holds release builds only.
+
+**Does it phone home?** No. The only outbound request the app makes on its own is the update
+check against this repository, and you can switch that to manual.
+
+**Where does my data live?** In an encrypted database, in a folder you choose during setup.
+Updates never touch it.
+
+**I lost my password.** Use the one-time recovery key from setup. Without it, and without any
+of the other four unlock methods, the vault cannot be opened — that is what it is for.
+
+## Licence
+
+AGPL-3.0, with a commercial licence also available. Full terms ship with the application and
+are visible in its About page.
