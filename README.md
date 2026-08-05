@@ -13,7 +13,7 @@ toolbox of the small utilities Windows buries several clicks deep.
 Nothing is uploaded, nothing phones home, and nothing leaves your machine unless you
 explicitly configure it to.
 
-> Status: `0.1.4`, under active development. Windows 10/11 x64 only — several features
+> Status: `0.1.5`, under active development. Windows 10/11 x64 only — several features
 > (Windows Hello, shell integration, global file hotkeys) are bound to Windows APIs.
 
 ---

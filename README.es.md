@@ -9,7 +9,7 @@ incluye gestor de contraseñas, historial de portapapeles, notas, un asistente d
 gestor de archivos rápido. Todo vive detrás de un único desbloqueo; nada sale de tu
 equipo salvo que lo configures explícitamente.
 
-> Estado: `0.1.4`, en desarrollo activo. Solo Windows 10/11 x64 — varias funciones
+> Estado: `0.1.5`, en desarrollo activo. Solo Windows 10/11 x64 — varias funciones
 > (Windows Hello, integración con el explorador, atajos globales de archivos) dependen
 > directamente de las API de Windows.
 
