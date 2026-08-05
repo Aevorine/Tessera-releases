@@ -54,7 +54,16 @@ versions toute seule.
 - Fichiers inutiles, caches de navigateurs, traces de confidentialité, résidus de pilotes,
   doublons et gros fichiers, allègement du disque C:, gestionnaire de démarrage, menu
   contextuel, blocage des pop-ups, et 42 petits utilitaires.
-- **Trois profondeurs d'analyse** — standard (~15 s), approfondie, et extrême (les 21 catégories).
+- **Trois profondeurs d'analyse pour le bilan en un clic** — *Analyse rapide* (les 4 catégories
+  les plus rapides, environ 2 s), *Bilan standard* (10 catégories, ~15 s), *Analyse approfondie*
+  (les mêmes 10, mais l'allègement du disque interroge DISM sur le magasin de composants : plus
+  lent, et exact plutôt qu'estimé). **21 scanners au total** ; les 11 autres — doublons, gros
+  fichiers, espace par dossier, logiciels installés, menu contextuel, données de navigateur,
+  pilotes remplacés et le reste — vivent sur leurs propres panneaux, pour qu'un bilan ne vous
+  impose jamais un balayage complet du disque que vous n'avez pas demandé.
+- **Rien d'irréversible n'est coché à votre place.** Ce que l'application ne peut pas récupérer
+  *et* qui coûte un vrai effort à reconstruire est listé et sélectionnable, mais jamais
+  pré-sélectionné — le chemin en un clic doit être le chemin sûr.
 - **Une simulation parcourt le vrai chemin de code sans toucher un seul octet** et indique ce
   que chaque disque gagnerait réellement.
 - **Chaque catégorie précise quel genre de « vide » elle a trouvé** — réellement propre, bloqué

@@ -46,7 +46,15 @@ After installing you never need to come back here — the app finds new versions
 
 - Junk files, browser caches, privacy traces, driver leftovers, duplicate and large files,
   C: drive slimming, startup manager, right-click menu, popup blocker, and 42 small utilities.
-- **Three scan depths** — standard (~15 s), deep, and extreme (all 21 categories).
+- **Three scan depths on the one-click check-up** — *Quick scan* (4 fastest categories, about
+  2 seconds), *Standard check-up* (10 categories, ~15 s), *Deep scan* (the same 10, but disk
+  slimming asks DISM about the component store — slower and exact rather than estimated).
+  **21 scanners in total**; the other 11 — duplicates, large files, space by folder, installed
+  software, context menu, browser data, superseded drivers and the rest — live on their own
+  panels, so a check-up never makes you wait on a full-disk sweep you didn't ask for.
+- **Nothing that cannot be undone is ticked for you.** Anything the app cannot get back *and*
+  that costs real effort to rebuild is listed and selectable, but never pre-selected — because
+  the one-click path has to be the safe path.
 - **A dry run walks the real code path without touching a byte**, and reports what each drive
   would actually gain.
 - **Every category says which kind of empty it found** — genuinely clean, blocked by

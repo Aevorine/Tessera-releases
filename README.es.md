@@ -52,7 +52,16 @@ Una vez instalado no necesitas volver aquí: la aplicación encuentra las nuevas
 - Archivos basura, cachés de navegadores, rastros de privacidad, restos de controladores,
   archivos duplicados y grandes, adelgazamiento del disco C:, gestor de inicio, menú
   contextual, bloqueo de ventanas emergentes y 42 utilidades pequeñas.
-- **Tres profundidades de análisis** — estándar (~15 s), profundo y extremo (las 21 categorías).
+- **Tres profundidades de análisis en la revisión de un clic** — *Análisis rápido* (las 4
+  categorías más veloces, unos 2 s), *Revisión estándar* (10 categorías, ~15 s), *Análisis
+  profundo* (las mismas 10, pero el adelgazamiento del disco consulta a DISM sobre el almacén
+  de componentes: más lento y exacto en lugar de estimado). **21 escáneres en total**; los otros
+  11 —duplicados, archivos grandes, espacio por carpeta, software instalado, menú contextual,
+  datos del navegador, controladores sustituidos y demás— viven en sus propios paneles, así que
+  una revisión nunca te obliga a esperar un barrido completo del disco que no pediste.
+- **Nada irreversible se marca por ti.** Lo que la aplicación no puede recuperar *y* cuesta un
+  esfuerzo real reconstruir aparece y se puede seleccionar, pero nunca viene preseleccionado:
+  el camino de un clic tiene que ser el camino seguro.
 - **Una simulación recorre la ruta de código real sin tocar un solo byte** e informa de lo que
   ganaría realmente cada unidad.
 - **Cada categoría dice qué tipo de «vacío» encontró** — realmente limpio, bloqueado por
