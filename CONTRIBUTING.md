@@ -1,63 +1,69 @@
-# Contributing
+# Contributing to Tessera
 
-This repository holds **release builds**, not source. That shapes what helping looks like
-here — there is no pull request to send, but four of the five most useful things you can do
-happen in this repo anyway.
+Thanks for taking a look. This is a security-sensitive project, so a few things
+are stricter here than in a typical repository.
 
-## Report a bug
+## Before you open a pull request
 
-[Open an issue](../../issues/new/choose). The template asks for the version, how you installed
-it, and what you expected — those three answers are what turn "the cleaner is broken" into
-something fixable.
+- **Say what problem it solves, not just what it changes.** A diff that explains
+  its own motivation gets reviewed faster than a larger one that doesn't.
+- **One concern per pull request.** A formatting sweep mixed into a behaviour
+  change is very hard to review, and the behaviour change is what matters.
+- **Do not weaken a security boundary for convenience.** Widening an update
+  source, relaxing signature checks, disabling `contextIsolation`, or skipping
+  the unlock gate on anything that reveals hidden content will be declined even
+  if the rest of the change is good. If a boundary is genuinely in the way, open
+  an issue about the boundary first.
 
-**Never paste vault contents, passwords, recovery keys or TOTP seeds into an issue.** Issues
-are public and permanent. If a problem cannot be described without them, report it privately
-through [Security advisories](../../security/advisories/new) instead — see
-[SECURITY.md](SECURITY.md).
+## Running the desktop app
 
-One thing worth knowing before you file: the diagnostic log inside the app
-(**Settings → Diagnostics → Copy report**) collects the version, the OS build and the recent
-errors, and it redacts paths under your user folder. Pasting that is usually faster and more
-accurate than describing it from memory.
+```bash
+cd modules/file_vault/ui
+npm install
+npm run dev
+```
 
-## Report a false positive in the cleaner
+Python 3.9+ is required for the backend, which the dev server starts for you.
 
-This is the single most valuable report we get, and it deserves its own heading.
+## Checks that must pass
 
-If Tessera offered to remove something it should not have — a folder you pinned, a setting you
-configured, an app you use — say so. Include what the item was labelled, which category it was
-under, and what you lost. Every such report becomes a permanent guard in the test suite, so it
-cannot come back.
+```bash
+cd modules/file_vault/ui
+npx tsc --noEmit     # types
+npm run lint         # eslint + all six locales have matching keys
+npm run test:update  # the guard suite
+```
 
-The reverse is also worth reporting: something obviously safe that Tessera refuses to clean, or
-labels as risky. Being over-cautious is the safer failure, but it is still a failure.
+Go code lives in `modules/file_vault/crossdevice`; run `go test ./core/... ./test/`
+from that directory. Note that `./...` from inside `core/` misses the end-to-end
+tests one level up.
 
-## Improve a translation
+## About the guard tests
 
-Tessera ships in English, 简体中文, Français, Español, Русский and العربية. Translations are
-done by machine and reviewed by hand, which means the wording in your language is probably
-serviceable rather than good.
+Several tests in `modules/file_vault/ui/tests/` exist to stop a specific defect
+from coming back rather than to describe intended behaviour — typography scale,
+clickable stat tiles, markdown chunking, README anchors. If one of them fails,
+the useful question is usually "what did I change that it is protecting?" rather
+than "how do I update the assertion".
 
-If a string reads awkwardly, open an issue with the screen it is on, what it currently says,
-and what it should say. Do not worry about finding the key — a screenshot of the sentence is
-enough.
+If you add a guard, **check it against a known-broken version first**. A guard
+that stays green when the thing it protects is removed is worse than no guard,
+because it reads as coverage.
 
-## Tell us what a report should have told you
+## Translations
 
-If a number in the app was true but useless, that is a bug in this project's terms. "Freed
-6.4 GB" when the drive gained 200 MB, a category that says "nothing found" when it was actually
-blocked by permissions, a warning that does not say which program to close — these are the
-things the app is supposed to get right, and every one of them was found by someone saying it
-looked wrong.
+The interface ships in English, 简体中文, Français, Español, Русский and العربية.
+Every user-visible string lives in `modules/file_vault/ui/src/i18n/locales/<lang>/`,
+and `npm run lint` fails if the six locales do not have identical key sets. Adding
+a string means adding it in all six; a rough translation that is clearly marked is
+more useful than a missing key, which renders as the raw key name.
 
-## Ask a question
+## Reporting a vulnerability
 
-Setup, pairing, choosing an encryption profile, moving the vault to another drive — use
-[Discussions](../../discussions). Questions asked there stay searchable for the next person,
-which an email cannot do.
+Please do not open a public issue. See [SECURITY.md](SECURITY.md).
 
-## What happens to source contributions
+## Licence
 
-The source is not currently public, so there is no pull request path. Tessera is
-AGPL-3.0-licensed, and the licence obligations that come with distributing it apply the same
-way — see [LICENSING.md](LICENSING.md).
+Contributions are accepted under the AGPL-3.0 licence that covers this repository
+(see [LICENSE](LICENSE)). If you need different terms for your own use, see
+[LICENSE-COMMERCIAL.md](LICENSE-COMMERCIAL.md).
