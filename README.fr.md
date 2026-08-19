@@ -9,7 +9,7 @@ aussi un gestionnaire de mots de passe, un historique de presse-papiers, des not
 assistant IA et un gestionnaire de fichiers rapide. Tout vit derrière un seul
 déverrouillage ; rien ne quitte votre machine sauf si vous le configurez explicitement.
 
-> Statut : `0.1.18`, en développement actif. Windows 10/11 x64 uniquement — plusieurs
+> Statut : `0.1.19`, en développement actif. Windows 10/11 x64 uniquement — plusieurs
 > fonctionnalités (Windows Hello, intégration à l'explorateur, raccourcis fichiers
 > globaux) dépendent directement des API Windows.
 
