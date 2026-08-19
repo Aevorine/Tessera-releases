@@ -68,6 +68,7 @@ actually kept.
 | [sonner](https://sonner.emilkowal.ski/) | MIT |
 | [next-themes](https://github.com/pacocoursey/next-themes) | MIT |
 | [`@tanstack/react-virtual`](https://tanstack.com/virtual) | MIT |
+| [KaTeX](https://katex.org) | MIT |
 | [`@dnd-kit/*`](https://github.com/clauderic/dnd-kit) | MIT |
 | [CodeMirror 6](https://codemirror.net/) / [`@uiw/react-codemirror`](https://uiwjs.github.io/react-codemirror) | MIT |
 | [`class-variance-authority`](https://github.com/joe-bell/cva) | Apache-2.0 |
