@@ -9,7 +9,7 @@ aussi un gestionnaire de mots de passe, un historique de presse-papiers, des not
 assistant IA et un gestionnaire de fichiers rapide. Tout vit derrière un seul
 déverrouillage ; rien ne quitte votre machine sauf si vous le configurez explicitement.
 
-> Statut : `0.1.25`, en développement actif. Windows 10/11 x64 uniquement — plusieurs
+> Statut : `0.1.27`, en développement actif. Windows 10/11 x64 uniquement — plusieurs
 > fonctionnalités (Windows Hello, intégration à l'explorateur, raccourcis fichiers
 > globaux) dépendent directement des API Windows.
 
@@ -260,6 +260,11 @@ récupérés.** C'est la conception voulue, pas un bug.
 - **Verrouiller** — fermer la fenêtre la cache dans la zone de notification. La clé
   maîtresse déverrouillée n'existe que dans la mémoire du processus backend et meurt
   avec lui.
+- **Démarrage avec Windows** — par défaut, Tessera démarre à l'ouverture de session et reste dans
+  la zone de notification sans ouvrir sa fenêtre ; cliquez sur l'icône quand vous en avez besoin.
+  Les deux réglages se trouvent dans **Paramètres → Intégration système** : décochez *Démarrer
+  automatiquement à la connexion*, ou gardez-le et décochez *Démarrage silencieux* pour que la
+  fenêtre s'ouvre à la connexion.
 
 ---
 
@@ -578,6 +583,28 @@ Ce que l'application ne peut pas contourner, c'est **l'isolation AP** : beaucoup
 d'entreprise, de campus et d'hôtel interdisent aux appareils d'un même Wi-Fi de communiquer.
 Un partage de connexion depuis le téléphone est le moyen le plus rapide de le confirmer, et
 aussi de le contourner.
+
+### Entre réseaux : votre propre point de rendez-vous
+
+Quand les deux appareils ne sont pas sur le même réseau, ils peuvent se retrouver via un point de
+rendez-vous que vous hébergez vous-même (la carte **Connexion entre réseaux** dans **Appareils et
+synchro**). Il aide seulement les appareils à se trouver et, quand une connexion directe est
+impossible, relaie des octets déjà chiffrés de bout en bout. Il ne détient aucune clé, n'écrit rien
+sur le disque et oublie tout au redémarrage.
+
+Le serveur est publié sous forme d'image de conteneur sur GitHub Packages :
+
+```bash
+docker run -d --name tessera-rendezvous --restart unless-stopped \
+  -p 47820:47820/udp ghcr.io/aevorine/tessera-rendezvous:latest \
+  -addr :47820 -secret "choisissez-un-mot-de-passe"
+```
+
+Il écoute en **UDP** 47820 : ouvrez l'UDP (pas seulement le TCP) dans le groupe de sécurité du
+cloud, le pare-feu et toute redirection de port, sinon rien ne se connecte et aucune erreur ne
+s'affiche. Chaque version fournit aussi des binaires pour Linux (x64 / ARM64) et Windows sous forme
+d'archives `Tessera-Rendezvous-<version>-<plateforme>`. Saisissez ensuite `votre-serveur:47820` et
+le même mot de passe sur les deux appareils.
 
 
 ## Modèle de sécurité

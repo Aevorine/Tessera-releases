@@ -9,7 +9,7 @@ incluye gestor de contraseñas, historial de portapapeles, notas, un asistente d
 gestor de archivos rápido. Todo vive detrás de un único desbloqueo; nada sale de tu
 equipo salvo que lo configures explícitamente.
 
-> Estado: `0.1.25`, en desarrollo activo. Solo Windows 10/11 x64 — varias funciones
+> Estado: `0.1.27`, en desarrollo activo. Solo Windows 10/11 x64 — varias funciones
 > (Windows Hello, integración con el explorador, atajos globales de archivos) dependen
 > directamente de las API de Windows.
 
@@ -257,6 +257,11 @@ diseño, no un fallo.
   cualquier momento sobre un archivo `.ivault`.
 - **Bloquear** — cerrar la ventana la oculta en la bandeja del sistema. La clave
   maestra desbloqueada solo existe en la memoria del proceso backend y muere con él.
+- **Inicio con Windows** — por defecto Tessera se inicia al iniciar sesión y se queda en la
+  bandeja del sistema sin abrir su ventana; haz clic en el icono de la bandeja cuando la
+  necesites. Ambos interruptores están en **Configuración → Integración del sistema**: desmarca
+  *Iniciar automáticamente al iniciar sesión*, o mantenlo y desmarca *Inicio silencioso* para que
+  la ventana se abra al iniciar sesión.
 
 ---
 
@@ -569,6 +574,28 @@ entrega una dirección de túnel a la que no puede llegar.
 Lo que la aplicación no puede sortear es el **aislamiento de AP**: muchas redes de empresa,
 campus y hoteles impiden que los dispositivos de un mismo Wi-Fi se comuniquen entre sí. Una zona
 Wi-Fi del móvil es la forma más rápida de confirmarlo, y también de evitarlo.
+
+### Entre redes: tu propio punto de encuentro
+
+Cuando los dos dispositivos no están en la misma red, pueden encontrarse a través de un punto de
+encuentro que ejecutas tú mismo (la tarjeta **Conexión entre redes** en **Dispositivos y
+sincronización**). Solo ayuda a que los dispositivos se encuentren y, cuando no hay conexión
+directa posible, reenvía bytes que ya van cifrados de extremo a extremo. No guarda claves, no
+escribe nada en disco y lo olvida todo al reiniciarse.
+
+El servidor se publica como imagen de contenedor en GitHub Packages:
+
+```bash
+docker run -d --name tessera-rendezvous --restart unless-stopped \
+  -p 47820:47820/udp ghcr.io/aevorine/tessera-rendezvous:latest \
+  -addr :47820 -secret "elige-una-contraseña"
+```
+
+Escucha en **UDP** 47820: abre UDP (no solo TCP) en el grupo de seguridad de la nube, el
+cortafuegos y cualquier redirección de puertos; si no, nada conecta y nada informa de un error.
+Cada versión incluye además binarios para Linux (x64 / ARM64) y Windows como archivos
+`Tessera-Rendezvous-<versión>-<plataforma>`. Después introduce `tu-servidor:47820` y la misma
+contraseña en ambos dispositivos.
 
 
 ## Modelo de seguridad

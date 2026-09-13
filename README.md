@@ -13,7 +13,7 @@ toolbox of the small utilities Windows buries several clicks deep.
 Nothing is uploaded, nothing phones home, and nothing leaves your machine unless you
 explicitly configure it to.
 
-> Status: `0.1.25`, under active development. Windows 10/11 x64 only — several features
+> Status: `0.1.27`, under active development. Windows 10/11 x64 only — several features
 > (Windows Hello, shell integration, global file hotkeys) are bound to Windows APIs.
 
 ---
@@ -245,6 +245,10 @@ gone too, **the files cannot be recovered.** That is the design, not a bug.
   re-run this any time against an `.ivault` file.
 - **Locking** — closing the window hides to tray. The unlocked master key exists only in
   the backend process's memory and dies with it.
+- **Starting with Windows** — by default Tessera starts when you sign in and stays in the
+  system tray without opening its window; click the tray icon when you need it. Both switches
+  are under **Settings → System integration**: untick *Start automatically at login*, or keep
+  it and untick *Start silently* to have the window open at sign-in.
 
 ---
 
@@ -546,6 +550,26 @@ cannot reach.
 What the app cannot work around is **AP isolation**: many company, campus and hotel networks
 forbid devices on the same Wi-Fi from talking to each other. A phone hotspot is the fastest way
 to confirm that is what you are hitting, and also the fastest way around it.
+
+### Across networks: running your own meeting point
+
+When the two devices are not on the same network, they can find each other through a meeting
+point you run yourself (the **Cross-network** card under **Devices & Sync**). It only helps the
+devices shake hands and, when a direct connection is impossible, forwards bytes that are already
+end-to-end encrypted. It holds no keys, writes nothing to disk and forgets everything on restart.
+
+The server is published as a container image on GitHub Packages:
+
+```bash
+docker run -d --name tessera-rendezvous --restart unless-stopped \
+  -p 47820:47820/udp ghcr.io/aevorine/tessera-rendezvous:latest \
+  -addr :47820 -secret "choose-a-password"
+```
+
+It listens on **UDP** 47820: open UDP (not just TCP) in the cloud security group, the firewall and
+any port forwarding, or nothing connects and nothing reports an error. Every release also carries
+prebuilt binaries for Linux (x64 / ARM64) and Windows as `Tessera-Rendezvous-<version>-<platform>`
+archives. Then enter `your-server:47820` and the same password on both devices.
 
 
 ## Security model

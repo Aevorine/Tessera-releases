@@ -1,0 +1,78 @@
+# Publishes the meeting-point server as a multi-arch container image on GitHub
+# Packages: ghcr.io/aevorine/tessera-rendezvous:<version> (+ :latest).
+#
+# It does not compile anything. It packages the exact Linux binaries attached to
+# the release, so the image and the downloadable archives are byte-for-byte the
+# same program. No third-party actions: only the Docker CLI and gh that ship on
+# the runner.
+name: Publish rendezvous image
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag to package, e.g. v0.1.27
+        required: true
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: rendezvous-image
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      TAG: ${{ github.event.release.tag_name || inputs.tag }}
+      IMAGE: ghcr.io/aevorine/tessera-rendezvous
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch release binaries
+        run: |
+          set -euo pipefail
+          version="${TAG#v}"
+          for arch in amd64 arm64; do
+            asset="Tessera-Rendezvous-${version}-linux-${arch}.tar.gz"
+            mkdir -p "dist/${arch}"
+            gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern "$asset" --dir "dist/${arch}"
+            tar -xzf "dist/${arch}/${asset}" -C "dist/${arch}"
+            chmod 0755 "dist/${arch}/tessera-rendezvous"
+            file "dist/${arch}/tessera-rendezvous"
+          done
+          cp LICENSE dist/LICENSE
+          sha256sum dist/*/tessera-rendezvous
+
+      - name: Log in to ghcr.io
+        run: echo "$GH_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+
+      - name: Build and push
+        run: |
+          set -euo pipefail
+          version="${TAG#v}"
+          source_url="https://github.com/${GITHUB_REPOSITORY}"
+          description="Tessera cross-network meeting point. Forwards end-to-end encrypted bytes only; holds no keys. UDP 47820."
+          tags=(--tag "${IMAGE}:${version}")
+          # :latest only follows the newest release, so a manual re-run for an old tag never moves it back.
+          latest="$(gh release view --repo "$GITHUB_REPOSITORY" --json tagName --jq .tagName)"
+          if [ "$latest" = "$TAG" ]; then tags+=(--tag "${IMAGE}:latest"); fi
+          docker buildx create --use --name rendezvous >/dev/null
+          docker buildx build \
+            --platform linux/amd64,linux/arm64 \
+            --file docker/rendezvous/Dockerfile \
+            --label "org.opencontainers.image.source=${source_url}" \
+            --label "org.opencontainers.image.version=${version}" \
+            --label "org.opencontainers.image.title=tessera-rendezvous" \
+            --label "org.opencontainers.image.description=${description}" \
+            --label "org.opencontainers.image.licenses=AGPL-3.0-only" \
+            --annotation "index:org.opencontainers.image.source=${source_url}" \
+            --annotation "index:org.opencontainers.image.description=${description}" \
+            --annotation "index:org.opencontainers.image.licenses=AGPL-3.0-only" \
+            "${tags[@]}" \
+            --push .
