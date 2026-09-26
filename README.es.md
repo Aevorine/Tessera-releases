@@ -9,7 +9,7 @@ incluye gestor de contraseñas, historial de portapapeles, notas, un asistente d
 gestor de archivos rápido. Todo vive detrás de un único desbloqueo; nada sale de tu
 equipo salvo que lo configures explícitamente.
 
-> Estado: `0.1.29`, en desarrollo activo. Solo Windows 10/11 x64 — varias funciones
+> Estado: `0.1.30`, en desarrollo activo. Solo Windows 10/11 x64 — varias funciones
 > (Windows Hello, integración con el explorador, atajos globales de archivos) dependen
 > directamente de las API de Windows.
 
@@ -38,7 +38,7 @@ equipo salvo que lo configures explícitamente.
 
 | Función | Qué hace |
 |---|---|
-| **Cifrado de archivos** | Cifra/descifra cualquier archivo en un único archivo `.ivault`. Tres perfiles: **poscuántico** (por defecto: AES-256-GCM para el contenido, con la clave de cada archivo envuelta además por ML-KEM-1024, de modo que hay que romper ambas construcciones), AES-256-GCM clásico o ChaCha20-Poly1305. El perfil se aplica igual a una selección múltiple de archivos y a una carpeta completa. Selección por lotes de muchos archivos a la vez. Los nombres de archivo y las sumas de verificación viven en una cabecera *cifrada*, así que un `.ivault` robado no revela ninguno de los dos. El descifrado tiene su propia entrada para carpetas, junto a la de archivos, y abrir una carpeta cifrada muestra lo que contiene sin descifrar antes el contenedor: el listado solo lee los pocos cientos de KB donde está el índice del archivo comprimido, así que una carpeta de 10 GB se abre tan rápido como una pequeña, y la extracción escribe cada archivo una sola vez. |
+| **Cifrado de archivos** | Cifra/descifra cualquier archivo en un único archivo `.ivault`. Tres perfiles: **poscuántico** (por defecto: AES-256-GCM para el contenido, con la clave de cada archivo envuelta además por ML-KEM-1024, de modo que hay que romper ambas construcciones), AES-256-GCM clásico o ChaCha20-Poly1305. El perfil se aplica igual a una selección múltiple de archivos y a una carpeta completa. Selección por lotes de muchos archivos a la vez. Los nombres de archivo y las sumas de verificación viven en una cabecera *cifrada*, así que un `.ivault` robado no revela ninguno de los dos. El descifrado tiene su propia entrada para carpetas, junto a la de archivos, y abrir una carpeta cifrada muestra lo que contiene sin descifrar antes el contenedor: el listado solo lee los pocos cientos de KB donde está el índice del archivo comprimido, así que una carpeta de 10 GB se abre tan rápido como una pequeña, y la extracción escribe cada archivo una sola vez. **Compartir con frase**: la clave del archivo se sella con una frase (Argon2id, 256 MiB) en lugar de tu identidad, y otra instalación de Tessera la abre solo con la frase; **Verificar integridad** autentica cada bloque y el SHA-256 completo sin escribir texto plano en disco. Un resumen muestra rendimiento, datos procesados y proporción de archivos intactos (ocho métricas a elegir). |
 | **Borrado seguro + búsqueda de restos** | Opcionalmente sobrescribe y luego borra el original tras cifrar, y busca restos en texto plano dejados por copias de seguridad de Office/WPS y copias con el mismo nombre en otras partes del disco. |
 | **Gestor de contraseñas** | CRUD completo, oculto por defecto, importación desde un CSV de contraseñas de Chrome/Edge/Firefox (el CSV en texto plano se borra de forma segura tras la importación), exportación de vuelta al formato Chrome/Edge. |
 | **Historial de portapapeles** | Historial cifrado con clasificación automática (URL / correo / teléfono / **fórmula** / código / texto), fijado, búsqueda, desplazamiento virtual, lista negra por aplicación, papelera, icono en la bandeja del sistema, y un panel global con `Ctrl+Shift+V`. Haz clic en una miniatura para abrir la imagen completa (pantalla completa o ventana flotante, a tu elección) con zoom, desplazamiento y clic para copiar. Exporta todo / lo fijado / lo oculto / solo lo marcado, con selección múltiple y seleccionar todo; importa varios archivos a la vez y los originales se eliminan de forma segura después. Importar nunca deja una segunda copia de algo que ya tienes: una entrada idéntica se combina en lugar de duplicarse, y conserva sus marcas de fijado y oculto. Para los duplicados que ya están en la bóveda, una limpieza enumera lo que ha encontrado y solo combina tras tu confirmación; lo que aparta va a la papelera. |
@@ -596,6 +596,8 @@ cortafuegos y cualquier redirección de puertos; si no, nada conecta y nada info
 Cada versión incluye además binarios para Linux (x64 / ARM64) y Windows como archivos
 `Tessera-Rendezvous-<versión>-<plataforma>`. Después introduce `tu-servidor:47820` y la misma
 contraseña en ambos dispositivos.
+
+Si otras personas usan tu servidor, el tráfico retransmitido tiene un tope diario por token y por dirección de origen (IPv6 por /64), y se limitan los relés simultáneos. Ajústalo con `-quota-gb`, `-quota-ip-gb`, `-max-relays-per-ip` y `-max-relays`.
 
 
 ## Modelo de seguridad

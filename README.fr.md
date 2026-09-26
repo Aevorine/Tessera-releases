@@ -9,7 +9,7 @@ aussi un gestionnaire de mots de passe, un historique de presse-papiers, des not
 assistant IA et un gestionnaire de fichiers rapide. Tout vit derrière un seul
 déverrouillage ; rien ne quitte votre machine sauf si vous le configurez explicitement.
 
-> Statut : `0.1.29`, en développement actif. Windows 10/11 x64 uniquement — plusieurs
+> Statut : `0.1.30`, en développement actif. Windows 10/11 x64 uniquement — plusieurs
 > fonctionnalités (Windows Hello, intégration à l'explorateur, raccourcis fichiers
 > globaux) dépendent directement des API Windows.
 
@@ -38,7 +38,7 @@ déverrouillage ; rien ne quitte votre machine sauf si vous le configurez explic
 
 | Fonctionnalité | Ce qu'elle fait |
 |---|---|
-| **Chiffrement de fichiers** | Chiffrez/déchiffrez n'importe quel fichier vers un seul fichier `.ivault`. Trois profils : **post-quantique** (par défaut — AES-256-GCM pour le contenu, la clé de chaque fichier étant en plus encapsulée par ML-KEM-1024, si bien qu'il faut casser les deux constructions), AES-256-GCM classique, ou ChaCha20-Poly1305. Le profil s'applique de façon identique à une sélection multiple de fichiers et à un dossier entier. Sélection par lot de plusieurs fichiers à la fois. Noms de fichiers et sommes de contrôle vivent dans un en-tête *chiffré* : un `.ivault` volé ne révèle ni l'un ni l'autre. Le déchiffrement dispose de sa propre entrée pour les dossiers, à côté de celle des fichiers, et ouvrir un dossier chiffré affiche son contenu sans déchiffrer le conteneur au préalable : la liste ne lit que les quelques centaines de Ko où se trouve l'index de l'archive, si bien qu'un dossier de 10 Go s'ouvre aussi vite qu'un petit, et l'extraction écrit chaque fichier une seule fois. |
+| **Chiffrement de fichiers** | Chiffrez/déchiffrez n'importe quel fichier vers un seul fichier `.ivault`. Trois profils : **post-quantique** (par défaut — AES-256-GCM pour le contenu, la clé de chaque fichier étant en plus encapsulée par ML-KEM-1024, si bien qu'il faut casser les deux constructions), AES-256-GCM classique, ou ChaCha20-Poly1305. Le profil s'applique de façon identique à une sélection multiple de fichiers et à un dossier entier. Sélection par lot de plusieurs fichiers à la fois. Noms de fichiers et sommes de contrôle vivent dans un en-tête *chiffré* : un `.ivault` volé ne révèle ni l'un ni l'autre. Le déchiffrement dispose de sa propre entrée pour les dossiers, à côté de celle des fichiers, et ouvrir un dossier chiffré affiche son contenu sans déchiffrer le conteneur au préalable : la liste ne lit que les quelques centaines de Ko où se trouve l'index de l'archive, si bien qu'un dossier de 10 Go s'ouvre aussi vite qu'un petit, et l'extraction écrit chaque fichier une seule fois. **Partage par phrase secrète** : la clé du fichier est scellée par une phrase secrète (Argon2id, 256 Mio) au lieu de votre identité, et une autre installation de Tessera l'ouvre avec la seule phrase ; **Vérifier l'intégrité** authentifie chaque bloc et le SHA-256 global sans écrire de texte clair sur le disque. Une vue d'ensemble affiche débit, volume traité et taux de fichiers intacts (huit indicateurs au choix). |
 | **Suppression sécurisée + recherche de résidus** | Écrase puis supprime en option l'original après chiffrement, et recherche les résidus en clair — sauvegardes Office/WPS et copies homonymes laissées ailleurs sur le disque. |
 | **Gestionnaire de mots de passe** | CRUD complet, masqué par défaut, import depuis un CSV de mots de passe Chrome/Edge/Firefox (le CSV en clair est supprimé de façon sécurisée après import), export au format Chrome/Edge. |
 | **Historique du presse-papiers** | Historique chiffré avec classification automatique (URL / e-mail / téléphone / **formule** / code / texte), épinglage, recherche, défilement virtuel, liste noire par application, corbeille, icône de zone de notification, et un panneau global via `Ctrl+Shift+V`. Cliquez sur une miniature pour ouvrir l'image entière (plein écran ou fenêtre flottante, au choix) avec zoom, déplacement et clic pour copier. Export de tout / des éléments épinglés / masqués / de la seule sélection, avec sélection multiple et tout sélectionner ; import de plusieurs fichiers à la fois, les originaux étant ensuite supprimés de façon sécurisée. Un import ne laisse jamais un second exemplaire de ce que vous avez déjà : une entrée identique est fusionnée plutôt que dupliquée, et ses marques épinglé et masqué sont conservées. Pour les doublons déjà présents, un nettoyage dresse la liste de ce qu'il a trouvé et ne fusionne qu'après votre confirmation ; ce qu'il écarte part à la corbeille. |
@@ -605,6 +605,8 @@ cloud, le pare-feu et toute redirection de port, sinon rien ne se connecte et au
 s'affiche. Chaque version fournit aussi des binaires pour Linux (x64 / ARM64) et Windows sous forme
 d'archives `Tessera-Rendezvous-<version>-<plateforme>`. Saisissez ensuite `votre-serveur:47820` et
 le même mot de passe sur les deux appareils.
+
+Si d'autres personnes utilisent votre serveur, le trafic relayé est plafonné chaque jour par jeton et par adresse source (IPv6 par /64), et le nombre de relais simultanés est limité. Réglez-les avec `-quota-gb`, `-quota-ip-gb`, `-max-relays-per-ip` et `-max-relays`.
 
 
 ## Modèle de sécurité

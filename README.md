@@ -13,7 +13,7 @@ toolbox of the small utilities Windows buries several clicks deep.
 Nothing is uploaded, nothing phones home, and nothing leaves your machine unless you
 explicitly configure it to.
 
-> Status: `0.1.29`, under active development. Windows 10/11 x64 only — several features
+> Status: `0.1.30`, under active development. Windows 10/11 x64 only — several features
 > (Windows Hello, shell integration, global file hotkeys) are bound to Windows APIs.
 
 ---
@@ -42,7 +42,7 @@ explicitly configure it to.
 
 | Feature | What it does |
 |---|---|
-| **File encryption** | Encrypt/decrypt any file to a single `.ivault` file. Three profiles: **post-quantum** (default — AES-256-GCM for the content, with the per-file key additionally wrapped by ML-KEM-1024, so recovering it means breaking both constructions), classic AES-256-GCM, or ChaCha20-Poly1305. The profile applies identically to multi-selected files and to a whole folder. Batch-select many files at once. Filenames and checksums live in an *encrypted* header, so a stolen `.ivault` reveals neither. Decryption has its own folder entry alongside the file one, and opening an encrypted folder shows what is inside it without decrypting the container first - the listing reads only the few hundred KB the archive index sits in, so a 10 GB folder opens as fast as a small one, and extraction writes each file exactly once instead of staging the whole tree twice. |
+| **File encryption** | Encrypt/decrypt any file to a single `.ivault` file. Three profiles: **post-quantum** (default — AES-256-GCM for the content, with the per-file key additionally wrapped by ML-KEM-1024, so recovering it means breaking both constructions), classic AES-256-GCM, or ChaCha20-Poly1305. The profile applies identically to multi-selected files and to a whole folder. Batch-select many files at once. Filenames and checksums live in an *encrypted* header, so a stolen `.ivault` reveals neither. Decryption has its own folder entry alongside the file one, and opening an encrypted folder shows what is inside it without decrypting the container first - the listing reads only the few hundred KB the archive index sits in, so a 10 GB folder opens as fast as a small one, and extraction writes each file exactly once instead of staging the whole tree twice. **Share with a passphrase** seals the file key with a passphrase (Argon2id, 256 MiB) instead of your identity, so another Tessera opens it with the passphrase alone; **Verify integrity** authenticates every chunk and the whole-file SHA-256 without writing plaintext to disk. An overview under the cards shows throughput, data processed and verified-intact ratio (eight selectable metrics). |
 | **Secure delete + remnant scan** | Optionally overwrite-then-delete the original after encrypting, and scan for plaintext leftovers Office/WPS backups and same-name copies elsewhere on disk left behind. Shredding a folder walks the whole tree: read-only files - a folder's own `desktop.ini`, anything restored from an archive - are cleared and overwritten rather than aborting the sweep, and whatever is genuinely stuck, such as a file still open in another program, is named in the error. A source that survived is never reported as a completed deletion. |
 | **Password manager** | Full CRUD, masked by default, import from a Chrome/Edge/Firefox password CSV (the plaintext CSV is securely deleted after import), export back to Chrome/Edge format. Recovery-code import can shred the file it read from, ticked by default: that file holds recovery codes in plain text, and leaving it in the downloads folder after importing means the import protected nothing. |
 | **Clipboard history** | Encrypted history with auto-classification (URL / email / phone / **formula** / code / text), pinning, search, virtual scrolling, per-app blacklist, recycle bin, tray icon, and a global `Ctrl+Shift+V` panel. Click a thumbnail to open the full image (fullscreen or floating window, your choice) with zoom, pan and click-to-copy. Export everything / pinned / hidden / just what you ticked, with multi-select and select-all; import several files at once and securely delete the originals afterwards. An import never leaves you holding a second copy of something already there: a matching entry is merged into rather than duplicated, and its pinned and hidden marks are kept. Duplicates already in the vault get a cleanup that lists what it found and merges only once you confirm, with whatever it folds away going to the recycle bin. |
@@ -570,6 +570,8 @@ It listens on **UDP** 47820: open UDP (not just TCP) in the cloud security group
 any port forwarding, or nothing connects and nothing reports an error. Every release also carries
 prebuilt binaries for Linux (x64 / ARM64) and Windows as `Tessera-Rendezvous-<version>-<platform>`
 archives. Then enter `your-server:47820` and the same password on both devices.
+
+If other people use your server too, relay traffic is capped each day per token and per source address (IPv6 per /64), and concurrent relays are limited. Tune with `-quota-gb`, `-quota-ip-gb`, `-max-relays-per-ip` and `-max-relays`.
 
 
 ## Security model
