@@ -1,0 +1,92 @@
+name: Bug report
+description: Something in the app behaves differently from what it says it does
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Never paste vault contents, passwords, recovery keys or TOTP seeds here.**
+        Issues are public. If the problem cannot be described without them, see
+        [SECURITY.md](../blob/main/SECURITY.md) and report it privately instead.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you did, what you expected, and what you got instead.
+      placeholder: |
+        1. Opened the notes panel
+        2. Clicked "Hidden"
+        3. Expected the unlock prompt, got an empty list
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Tessera version
+      description: Settings → About, or the filename of the installer you ran.
+      placeholder: "0.1.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: install
+    attributes:
+      label: How it was installed
+      options:
+        - Installer (Tessera-Setup.exe)
+        - Portable (Tessera.exe)
+        - Android APK
+        - Android companion app
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Which part
+      description: Roughly where it went wrong. Pick the closest one.
+      options:
+        - File encryption / decryption
+        - Password manager
+        - Clipboard history
+        - Notes
+        - File manager
+        - Cross-device sync
+        - PC cleanup - checkup, junk, privacy
+        - PC cleanup - disk space, large files, duplicates
+        - PC cleanup - startup, right-click menu, popup blocking
+        - PC cleanup - installed software, registry
+        - PC cleanup - toolbox
+        - Unlocking / setup
+        - Updates
+        - Something else
+    validations:
+      required: true
+
+  - type: input
+    id: windows
+    attributes:
+      label: Windows version
+      description: Run `winver`. For the Android app, give the Android version and device instead.
+      placeholder: "Windows 11 23H2 (22631.3447)"
+
+  - type: textarea
+    id: log
+    attributes:
+      label: Diagnostic log
+      description: |
+        Settings → Diagnostics → Copy. It records events, not contents — but read it
+        before pasting, and remove anything you would rather not publish.
+      render: text
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Before submitting
+      options:
+        - label: This report contains no vault contents, passwords or keys
+          required: true
+        - label: I checked that an existing issue does not already cover it
+          required: true

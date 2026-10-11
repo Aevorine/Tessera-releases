@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/Aevorine/Tessera-releases/security/advisories/new
+    about: Report privately. Please do not open a public issue for anything that could put someone's vault at risk.
+  - name: Setup and usage questions
+    url: https://github.com/Aevorine/Tessera-releases/discussions
+    about: How to configure email-code login, pair a device, choose an encryption profile, and so on.

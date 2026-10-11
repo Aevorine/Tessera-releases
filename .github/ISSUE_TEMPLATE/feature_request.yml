@@ -1,0 +1,40 @@
+name: Feature request
+description: Something the app should be able to do and cannot
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do
+      description: |
+        Describe the situation, not the solution. "I keep two copies of the same
+        note because I cannot tell which is newer" says more than "add a sort
+        button" — it leaves room for a better answer than the one you had in mind.
+    validations:
+      required: true
+
+  - type: textarea
+    id: workaround
+    attributes:
+      label: What you do today instead
+      description: If there is a workaround, knowing it helps judge how much this costs you.
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Where
+      multiple: true
+      options:
+        - Windows desktop app
+        - Android companion app
+        - Both
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Please confirm
+      options:
+        - label: This does not require the app to send data anywhere it currently does not
+          required: false
