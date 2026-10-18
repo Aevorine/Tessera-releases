@@ -9,7 +9,7 @@ aussi un gestionnaire de mots de passe, un historique de presse-papiers, des not
 assistant IA et un gestionnaire de fichiers rapide. Tout vit derrière un seul
 déverrouillage ; rien ne quitte votre machine sauf si vous le configurez explicitement.
 
-> Statut : `0.1.37`, en développement actif. Windows 10/11 x64 uniquement — plusieurs
+> Statut : `0.1.38`, en développement actif. Windows 10/11 x64 uniquement — plusieurs
 > fonctionnalités (Windows Hello, intégration à l'explorateur, raccourcis fichiers
 > globaux) dépendent directement des API Windows.
 
@@ -487,13 +487,18 @@ proximité, balayage du réseau local, adresse de cet appareil pour l'appairage 
 vides sans rien pour l'expliquer. Le diagnostic de connexion sous **Appareils à proximité** affiche
 le nombre d'interfaces en premier pour la même raison : c'est la première chose à écarter.
 
-L'écran est composé de sections repliables. Ce dont vous ne vous servez pas — le code d'appairage,
-les mises à jour, le verrou de l'application, le journal des incidents — se réduit à une ligne de
-titre et le reste à la prochaine ouverture. La liste des appareils appairés et les actions d'envoi
-ne se replient pas : l'écran existe pour elles. Des mesures en direct sont également disponibles —
-appareils en ligne, latence du lien, vitesse actuelle, totaux de la session, port d'écoute, adresses
-locales, interfaces disponibles — lues dans le flux d'événements qui arrive déjà, sans interrogation
-supplémentaire en arrière-plan, et le minuteur ne tourne pas tant que la section est fermée.
+L'écran d'accueil tient sur une seule page : un en-tête d'état avec le nom de l'appareil, le nombre
+d'appareils en ligne et la latence du lien, les quatre actions principales (scanner, mon code, envoyer
+le presse-papiers, envoyer des fichiers), puis les transferts en cours, une grille « Toutes les
+fonctions » et les appareils appairés. Appairage, presse-papiers, connexion entre réseaux, cet
+appareil, mises à jour, sécurité et diagnostic ont chacun une tuile avec un résumé en direct —
+appareils à proximité, synchronisation automatique active ou non, mise à jour disponible, réglages à
+corriger — et un appui déploie la tuile en panneau plein écran ; Retour ou Échap le referme. Sur
+tablette, le contenu est centré en portrait et passe sur deux colonnes en paysage ou sur un pliable
+ouvert. En mode professionnel, le panneau de diagnostic affiche des mesures en direct — appareils en
+ligne, latence du lien, vitesse actuelle, totaux de la session, port d'écoute, adresses locales,
+interfaces disponibles — lues dans le flux d'événements qui arrive déjà, sans interrogation
+supplémentaire en arrière-plan, et le minuteur ne tourne pas tant que le panneau est fermé.
 
 Le client Android couvre l'appairage par scan de QR code, la vérification du code de sécurité,
 la liste des appareils, l'envoi/réception du presse-papiers, le choix d'une ou plusieurs

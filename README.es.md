@@ -9,7 +9,7 @@ incluye gestor de contraseñas, historial de portapapeles, notas, un asistente d
 gestor de archivos rápido. Todo vive detrás de un único desbloqueo; nada sale de tu
 equipo salvo que lo configures explícitamente.
 
-> Estado: `0.1.37`, en desarrollo activo. Solo Windows 10/11 x64 — varias funciones
+> Estado: `0.1.38`, en desarrollo activo. Solo Windows 10/11 x64 — varias funciones
 > (Windows Hello, integración con el explorador, atajos globales de archivos) dependen
 > directamente de las API de Windows.
 
@@ -481,14 +481,19 @@ manual— volverían vacías sin nada que lo explicara. El diagnóstico de conex
 cercanos** informa primero del número de interfaces por la misma razón: es lo primero que conviene
 descartar.
 
-La pantalla se compone de secciones plegables. Aquello que no está usando —el código de
-vinculación, las actualizaciones, el bloqueo de la aplicación, el registro de incidencias— se
-reduce a una línea de título y sigue plegado la próxima vez. La lista de dispositivos vinculados y
-las acciones de envío no se pliegan: la pantalla existe para ellas. También hay métricas en vivo
-—dispositivos en línea, latencia del enlace, velocidad actual, totales de la sesión, puerto de
-escucha, direcciones locales, interfaces disponibles— leídas del flujo de eventos que ya está
-llegando, sin sondeos adicionales en segundo plano, y el temporizador no corre mientras la sección
-está cerrada.
+La pantalla de inicio es una sola página: una cabecera de estado con el nombre del dispositivo,
+cuántos dispositivos están en línea y la latencia del enlace, las cuatro acciones principales
+(escanear, mi código, enviar portapapeles, enviar archivos) y, debajo, las transferencias en curso,
+una cuadrícula «Todas las funciones» y los dispositivos vinculados. Vinculación, portapapeles,
+conexión entre redes, este dispositivo, actualizaciones, seguridad y diagnóstico tienen cada uno una
+casilla con un resumen en vivo —dispositivos cercanos, si la sincronización automática está activa,
+una actualización disponible, ajustes pendientes— y al tocarla se despliega un panel a pantalla
+completa; Atrás o Esc lo cierran. En tabletas el contenido se centra en vertical y se divide en dos
+columnas en horizontal o en un plegable abierto. En el modo profesional, el panel de diagnóstico
+muestra métricas en vivo —dispositivos en línea, latencia del enlace, velocidad actual, totales de
+la sesión, puerto de escucha, direcciones locales, interfaces disponibles— leídas del flujo de
+eventos que ya está llegando, sin sondeos adicionales en segundo plano, y el temporizador no corre
+mientras el panel está cerrado.
 
 El cliente de Android cubre la vinculación escaneando un código QR, la comprobación del código
 de seguridad, la lista de dispositivos, el envío/recepción del portapapeles, la elección de uno o

@@ -1,6 +1,6 @@
 # Tessera
 
-Download the signed Windows portable application or installer from [GitHub Releases](https://github.com/Aevorine/Tessera/releases/latest). Version 0.1.37 uses this repository for application updates by default and can be switched to the [Tessera-releases](https://github.com/Aevorine/Tessera-releases) mirror in Settings. Downloads use 16 concurrent range connections, adaptive chunks and resume records, routed through the Windows system proxy when one is configured. There is no application bandwidth cap; throughput depends on your connection and GitHub's CDN. Releases retain the latest two versions. This release was packaged without running tests.
+Download the signed Windows portable application or installer from [GitHub Releases](https://github.com/Aevorine/Tessera/releases/latest). Version 0.1.38 uses this repository for application updates by default and can be switched to the [Tessera-releases](https://github.com/Aevorine/Tessera-releases) mirror in Settings. Downloads use 16 concurrent range connections, adaptive chunks and resume records, routed through the Windows system proxy when one is configured. There is no application bandwidth cap; throughput depends on your connection and GitHub's CDN. Releases retain the latest two versions. This release was packaged without running tests.
 
 **English** · [简体中文](README.zh-CN.md) · [Français](README.fr.md) · [Español](README.es.md) · [Русский](README.ru.md) · [العربية](README.ar.md)
 
@@ -15,7 +15,7 @@ toolbox of the small utilities Windows buries several clicks deep.
 Nothing is uploaded, nothing phones home, and nothing leaves your machine unless you
 explicitly configure it to.
 
-> Status: `0.1.37`, under active development. Windows 10/11 x64 only — several features
+> Status: `0.1.38`, under active development. Windows 10/11 x64 only — several features
 > (Windows Hello, shell integration, global file hotkeys) are bound to Windows APIs.
 
 ---
@@ -465,13 +465,17 @@ this device's own address for manual pairing — would come back empty with noth
 why. The connection check under **Nearby devices** reports the interface count first for the
 same reason: it is the first thing worth ruling out.
 
-The screen is built from collapsible sections. Anything you are not using right now — the
-pairing code, app updates, the app lock, the fault log — folds down to a single title row and
-stays folded next time. The paired-device list and the send actions do not fold: they are what
-the screen is for. Live metrics are available too — devices online, link latency, current
+The home screen is a single page: a status header with the device name, how many devices are
+online and the link latency, the four main actions (scan, my code, send clipboard, send files),
+then active transfers, an "All features" grid and the paired devices. Pairing, clipboard,
+cross-network, this device, updates, security and diagnostics each have a tile with a live
+summary — nearby devices, whether auto-sync is on, an available update, settings that need
+attention — and a tap expands the tile into a full-screen panel; Back or Esc closes it. Tablets
+get a centred column in portrait and two columns in landscape or on an unfolded foldable. In
+professional mode the diagnostics panel shows live metrics — devices online, link latency, current
 transfer speed, session totals, listening port, local addresses, interfaces available — read
 off the event stream that is already arriving, so nothing extra polls in the background, and
-the timer does not run at all while the section is closed.
+the timer does not run at all while the panel is closed.
 
 The Android client covers QR-scan pairing, the security-code check, the device list, clipboard
 send/receive, choosing one or more targets for shared files, transfer controls, and choosing
