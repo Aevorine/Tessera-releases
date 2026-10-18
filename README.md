@@ -1,6 +1,6 @@
 # Tessera
 
-Download the signed Windows portable application or installer from [GitHub Releases](https://github.com/Aevorine/Tessera/releases/latest). Version 0.1.39 uses this repository for application updates by default and can be switched to the [Tessera-releases](https://github.com/Aevorine/Tessera-releases) mirror in Settings. Downloads use 16 concurrent range connections, adaptive chunks and resume records, routed through the Windows system proxy when one is configured. There is no application bandwidth cap; throughput depends on your connection and GitHub's CDN. Releases retain the latest two versions. This release was packaged without running tests.
+Download the signed Windows portable application or installer from [GitHub Releases](https://github.com/Aevorine/Tessera/releases/latest). Version 0.1.40 uses this repository for application updates by default and can be switched to the [Tessera-releases](https://github.com/Aevorine/Tessera-releases) mirror in Settings. Downloads use 16 concurrent range connections, adaptive chunks and resume records, routed through the Windows system proxy when one is configured. There is no application bandwidth cap; throughput depends on your connection and GitHub's CDN. Releases retain the latest two versions. This release was packaged without running tests.
 
 **English** · [简体中文](README.zh-CN.md) · [Français](README.fr.md) · [Español](README.es.md) · [Русский](README.ru.md) · [العربية](README.ar.md)
 
@@ -15,7 +15,7 @@ toolbox of the small utilities Windows buries several clicks deep.
 Nothing is uploaded, nothing phones home, and nothing leaves your machine unless you
 explicitly configure it to.
 
-> Status: `0.1.39`, under active development. Windows 10/11 x64 only — several features
+> Status: `0.1.40`, under active development. Windows 10/11 x64 only — several features
 > (Windows Hello, shell integration, global file hotkeys) are bound to Windows APIs.
 
 ---
