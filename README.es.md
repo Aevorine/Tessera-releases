@@ -9,7 +9,7 @@ incluye gestor de contraseñas, historial de portapapeles, notas, un asistente d
 gestor de archivos rápido. Todo vive detrás de un único desbloqueo; nada sale de tu
 equipo salvo que lo configures explícitamente.
 
-> Estado: `0.1.38`, en desarrollo activo. Solo Windows 10/11 x64 — varias funciones
+> Estado: `0.1.39`, en desarrollo activo. Solo Windows 10/11 x64 — varias funciones
 > (Windows Hello, integración con el explorador, atajos globales de archivos) dependen
 > directamente de las API de Windows.
 
@@ -511,7 +511,7 @@ comprueba nada hasta que pulses **Buscar actualizaciones**. Solo la *comprobaci�
 Android no permite que una aplicación instalada fuera de la tienda instale un paquete en
 silencio, así que el último paso siempre es el diálogo del propio sistema, que confirmas tú. La
 descarga solo se acepta desde github.com, y es el sistema quien exige que el paquete nuevo lleve
-la misma clave de firma que el instalado.
+la misma clave de firma que el instalado. El panel de actualizaciones muestra el enlace de GitHub correspondiente — la página de releases del origen elegido, o la de la nueva versión cuando la hay; tócalo para abrirlo y mantenlo pulsado para copiarlo.
 
 Se ha compilado y firmado pero **no** se ha ejecutado en hardware físico aquí; trata la primera
 instalación como una prueba.

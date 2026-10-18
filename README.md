@@ -1,6 +1,6 @@
 # Tessera
 
-Download the signed Windows portable application or installer from [GitHub Releases](https://github.com/Aevorine/Tessera/releases/latest). Version 0.1.38 uses this repository for application updates by default and can be switched to the [Tessera-releases](https://github.com/Aevorine/Tessera-releases) mirror in Settings. Downloads use 16 concurrent range connections, adaptive chunks and resume records, routed through the Windows system proxy when one is configured. There is no application bandwidth cap; throughput depends on your connection and GitHub's CDN. Releases retain the latest two versions. This release was packaged without running tests.
+Download the signed Windows portable application or installer from [GitHub Releases](https://github.com/Aevorine/Tessera/releases/latest). Version 0.1.39 uses this repository for application updates by default and can be switched to the [Tessera-releases](https://github.com/Aevorine/Tessera-releases) mirror in Settings. Downloads use 16 concurrent range connections, adaptive chunks and resume records, routed through the Windows system proxy when one is configured. There is no application bandwidth cap; throughput depends on your connection and GitHub's CDN. Releases retain the latest two versions. This release was packaged without running tests.
 
 **English** · [简体中文](README.zh-CN.md) · [Français](README.fr.md) · [Español](README.es.md) · [Русский](README.ru.md) · [العربية](README.ar.md)
 
@@ -15,7 +15,7 @@ toolbox of the small utilities Windows buries several clicks deep.
 Nothing is uploaded, nothing phones home, and nothing leaves your machine unless you
 explicitly configure it to.
 
-> Status: `0.1.38`, under active development. Windows 10/11 x64 only — several features
+> Status: `0.1.39`, under active development. Windows 10/11 x64 only — several features
 > (Windows Hello, shell integration, global file hotkeys) are bound to Windows APIs.
 
 ---
@@ -467,11 +467,14 @@ same reason: it is the first thing worth ruling out.
 
 The home screen is a single page: a status header with the device name, how many devices are
 online and the link latency, the four main actions (scan, my code, send clipboard, send files),
-then active transfers, an "All features" grid and the paired devices. Pairing, clipboard,
+then active transfers, a grid of feature tiles that stretches to fill the rest of the screen, and the paired devices. Pairing, clipboard,
 cross-network, this device, updates, security and diagnostics each have a tile with a live
 summary — nearby devices, whether auto-sync is on, an available update, settings that need
-attention — and a tap expands the tile into a full-screen panel; Back or Esc closes it. Tablets
-get a centred column in portrait and two columns in landscape or on an unfolded foldable. In
+attention — and a tap expands the tile into a full-screen panel; Back or Esc closes it. Content fills the
+full width on every screen; landscape tablets and unfolded foldables split into two columns, and
+panels lay their cards out in two columns there. Panels carry only a back button, no title. All
+text uses a bundled serif: Tinos (a Times New Roman metric clone) for Latin letters and
+punctuation, Noto Serif SC (Song style) for Chinese. In
 professional mode the diagnostics panel shows live metrics — devices online, link latency, current
 transfer speed, session totals, listening port, local addresses, interfaces available — read
 off the event stream that is already arriving, so nothing extra polls in the background, and
@@ -491,7 +494,7 @@ actually exists. Turn it off and nothing is checked until you press **Check for 
 the *check* is automatic — Android does not let a sideloaded app install a package silently, so
 the last step is always the system's own install dialog, which you confirm yourself. Downloads
 are accepted from github.com and nowhere else, and the system enforces that the new package
-carries the same signing key as the installed one.
+carries the same signing key as the installed one. The update panel shows the matching GitHub link — the selected source's releases page, or the new release's page once one is found; tap to open it, long-press to copy.
 
 It has been compiled and signed but **not** run on physical hardware here, so treat the first
 install as a trial.

@@ -9,7 +9,7 @@ aussi un gestionnaire de mots de passe, un historique de presse-papiers, des not
 assistant IA et un gestionnaire de fichiers rapide. Tout vit derrière un seul
 déverrouillage ; rien ne quitte votre machine sauf si vous le configurez explicitement.
 
-> Statut : `0.1.38`, en développement actif. Windows 10/11 x64 uniquement — plusieurs
+> Statut : `0.1.39`, en développement actif. Windows 10/11 x64 uniquement — plusieurs
 > fonctionnalités (Windows Hello, intégration à l'explorateur, raccourcis fichiers
 > globaux) dépendent directement des API Windows.
 
@@ -517,7 +517,7 @@ tant que vous n'appuyez pas sur **Vérifier les mises à jour**. Seule la *véri
 automatique : Android n'autorise pas une application installée hors magasin à installer un paquet
 silencieusement, donc la dernière étape reste toujours la boîte de dialogue du système, que vous
 confirmez vous-même. Le téléchargement n'est accepté que depuis github.com, et c'est le système
-qui impose que le nouveau paquet porte la même clé de signature que celui déjà installé.
+qui impose que le nouveau paquet porte la même clé de signature que celui déjà installé. Le panneau des mises à jour affiche le lien GitHub correspondant — la page des releases de la source choisie, ou celle de la nouvelle version quand il y en a une ; touchez pour l'ouvrir, appui long pour le copier.
 
 Il a été compilé et signé mais **pas** exécuté sur un appareil physique ici : considérez la
 première installation comme un essai.
