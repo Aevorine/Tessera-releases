@@ -9,7 +9,7 @@ incluye gestor de contraseñas, historial de portapapeles, notas, un asistente d
 gestor de archivos rápido. Todo vive detrás de un único desbloqueo; nada sale de tu
 equipo salvo que lo configures explícitamente.
 
-> Estado: `0.1.40`, en desarrollo activo. Solo Windows 10/11 x64 — varias funciones
+> Estado: `0.1.41`, en desarrollo activo. Solo Windows 10/11 x64 — varias funciones
 > (Windows Hello, integración con el explorador, atajos globales de archivos) dependen
 > directamente de las API de Windows.
 
@@ -412,7 +412,7 @@ Todo lo que copies va a tus dispositivos permanentes y aterriza en su portapapel
 listo para pegar. Texto, texto enriquecido e imágenes viajan en la representación que pueda usar
 cada aplicación receptora; las fórmulas y símbolos físicos se conservan intactos — `E = mc²`,
 `m/s²`, `θ̇`, `∑∫√`. Solo se sincroniza el elemento más reciente del portapapeles, para que una
-copia anterior no llegue tarde y sustituya lo que acabas de copiar. Windows comprueba cada 200 ms;
+copia anterior no llegue tarde y sustituya lo que acabas de copiar. Windows lo detecta en el instante de copiar (avisos de cambio del portapapeles, sin sondeo);
 en Android 10 o posterior, el sistema solo permite a Tessera leer el portapapeles mientras está en
 primer plano, así que después de copiar en otra aplicación Android basta con abrir Tessera una vez
 para sincronizar. El contenido recibido sí se escribe en el portapapeles de Android.
@@ -422,12 +422,12 @@ pegas.
 
 ### Cronología del portapapeles
 
-Todo lo que se copia en un dispositivo vinculado se guarda en la cronología del portapapeles, en la página
-*Dispositivos y sincronización* — en el PC, la tableta y el teléfono. Está justo debajo de *Este dispositivo*,
-en una **ventana de tamaño fijo**: la página no crece con el número de entradas; el contenido se desplaza
-dentro de la ventana. El botón de pantalla completa del encabezado muestra el mismo contenido en toda la
-ventana (toda la pantalla en Android); pulsa **Esc** para salir, o la tecla Atrás en Android. Elige una
-entrada para pegarla de nuevo en este dispositivo o enviarla a todos. La cronología solo se guarda en
+Todo lo que se copia en un dispositivo vinculado se guarda en la cronología del portapapeles — en el PC,
+la tableta y el teléfono. Pulsa el mosaico **Portapapeles** en *Dispositivos y sincronización* y la
+cronología ocupa toda la pantalla; **Esc** (o la tecla Atrás en Android) vuelve a los mosaicos. Elige una
+entrada para pegarla de nuevo en este dispositivo o enviarla a todos. **Enviar portapapeles** permite
+marcar una entrada, varias o todas — el portapapeles actual más la cronología — y enviarlas de una vez a
+todos los dispositivos conectados, de la más antigua a la más reciente. La cronología solo se guarda en
 memoria y se borra al cerrar la aplicación.
 
 ### Enviar archivos
@@ -533,7 +533,7 @@ nombres reservados de Windows se rechazan de plano.
 
 ### Conectar tus dispositivos
 
-En el ordenador abre **Multidispositivo → Dispositivos y sincronización → Generar código de
+En el ordenador abre **Multidispositivo → Dispositivos y sincronización → Emparejar → Mostrar mi código → Generar código de
 vinculación**; en el móvil pulsa **Escanear para vincular** y apunta al código QR. Ambas
 pantallas mostrarán los mismos seis dígitos y seis emojis: comprueba que coinciden, confirma
 en los dos, y listo.

@@ -1,6 +1,6 @@
 # Tessera
 
-Download the signed Windows portable application or installer from [GitHub Releases](https://github.com/Aevorine/Tessera/releases/latest). Version 0.1.40 uses this repository for application updates by default and can be switched to the [Tessera-releases](https://github.com/Aevorine/Tessera-releases) mirror in Settings. Downloads use 16 concurrent range connections, adaptive chunks and resume records, routed through the Windows system proxy when one is configured. There is no application bandwidth cap; throughput depends on your connection and GitHub's CDN. Releases retain the latest two versions. This release was packaged without running tests.
+Download the signed Windows portable application or installer from [GitHub Releases](https://github.com/Aevorine/Tessera/releases/latest). Version 0.1.41 uses this repository for application updates by default and can be switched to the [Tessera-releases](https://github.com/Aevorine/Tessera-releases) mirror in Settings. Downloads use 16 concurrent range connections, adaptive chunks and resume records, routed through the Windows system proxy when one is configured. There is no application bandwidth cap; throughput depends on your connection and GitHub's CDN. Releases retain the latest two versions. This release was packaged without running tests.
 
 **English** · [简体中文](README.zh-CN.md) · [Français](README.fr.md) · [Español](README.es.md) · [Русский](README.ru.md) · [العربية](README.ar.md)
 
@@ -15,7 +15,7 @@ toolbox of the small utilities Windows buries several clicks deep.
 Nothing is uploaded, nothing phones home, and nothing leaves your machine unless you
 explicitly configure it to.
 
-> Status: `0.1.40`, under active development. Windows 10/11 x64 only — several features
+> Status: `0.1.41`, under active development. Windows 10/11 x64 only — several features
 > (Windows Hello, shell integration, global file hotkeys) are bound to Windows APIs.
 
 ---
@@ -403,7 +403,7 @@ Anything you copy goes to your long-term devices and lands in their system clipb
 to paste. Text, rich text and images travel in the representation each receiving app can use;
 formulas and physics symbols survive intact — `E = mc²`, `m/s²`, `θ̇`, `∑∫√`. Only the newest
 clipboard item is synchronized, so an old copy cannot arrive late and replace what you copied
-next. Windows checks every 200 ms; Android can read the system clipboard only while Tessera is
+next. Windows picks up a copy the moment it happens (clipboard change notifications, no polling); Android can read the system clipboard only while Tessera is
 in the foreground on Android 10 and newer, so after copying in another Android app, open
 Tessera once to synchronize it. Incoming content is still written to Android's clipboard.
 
@@ -411,12 +411,12 @@ Large images are not pushed; the other device fetches them only if you actually 
 
 ### Clipboard timeline
 
-Everything copied on any paired device is kept in a clipboard timeline on the *Devices & sync*
-page — on the PC, the tablet and the phone alike. It sits right below *This device*, in a
-**fixed-size window**: the page never grows with the number of entries, you scroll inside the
-window to read the rest. The full-screen button in its header opens the same content across the
-whole window (the whole screen on Android); press **Esc** to leave, or the Back key on Android.
-Pick an entry to paste it again on this device or send it to every device. The timeline lives
+Everything copied on any paired device is kept in a clipboard timeline — on the PC, the tablet
+and the phone alike. Tap the **Clipboard** tile on *Devices & sync* and the timeline fills the
+screen; **Esc** (or the Back key on Android) returns to the tiles. Pick an entry to paste it
+again on this device or send it to every device. **Send clipboard** lets you tick one entry,
+several or all of them — the current clipboard plus the timeline — and sends them to every
+connected device in one go, oldest first, so the newest one ends up on the other clipboards. The timeline lives
 in memory only and is cleared when the app exits.
 
 ### Sending files
@@ -515,7 +515,7 @@ is written — `../` escapes, absolute paths and reserved Windows names are reje
 
 ### Connecting your devices
 
-On the computer open **Cross-device → Devices & Sync → Generate pairing code**; on the phone
+On the computer open **Cross-device → Devices & Sync → Pair → Show my code → Generate pairing code**; on the phone
 tap **Scan to pair** and point it at the QR code. Both screens then show the same six digits
 and six emoji — check they match, confirm on both, done.
 

@@ -9,7 +9,7 @@ aussi un gestionnaire de mots de passe, un historique de presse-papiers, des not
 assistant IA et un gestionnaire de fichiers rapide. Tout vit derrière un seul
 déverrouillage ; rien ne quitte votre machine sauf si vous le configurez explicitement.
 
-> Statut : `0.1.40`, en développement actif. Windows 10/11 x64 uniquement — plusieurs
+> Statut : `0.1.41`, en développement actif. Windows 10/11 x64 uniquement — plusieurs
 > fonctionnalités (Windows Hello, intégration à l'explorateur, raccourcis fichiers
 > globaux) dépendent directement des API Windows.
 
@@ -419,7 +419,7 @@ système, prêt à être collé. Texte, texte enrichi et images voyagent dans la
 chaque application réceptrice sait utiliser ; les formules et symboles physiques restent intacts
 — `E = mc²`, `m/s²`, `θ̇`, `∑∫√`. Seul le dernier élément du presse-papiers est synchronisé : une
 ancienne copie ne peut donc pas arriver en retard et remplacer ce que vous venez de copier.
-Windows vérifie toutes les 200 ms ; sous Android 10 et suivants, le système n'autorise Tessera à
+Windows la détecte dès la copie (notifications de changement du presse-papiers, sans interrogation) ; sous Android 10 et suivants, le système n'autorise Tessera à
 lire le presse-papiers qu'au premier plan : après une copie dans une autre application Android,
 ouvrez Tessera une fois pour la synchroniser. Le contenu reçu est toujours écrit dans le
 presse-papiers Android.
@@ -429,12 +429,13 @@ réellement.
 
 ### Chronologie du presse-papiers
 
-Tout ce qui est copié sur un appareil appairé est conservé dans la chronologie du presse-papiers, sur la
-page *Appareils et synchronisation* — sur le PC, la tablette et le téléphone. Elle se trouve juste après
-*Cet appareil*, dans une **fenêtre de taille fixe** : la page ne s'allonge pas avec le nombre d'entrées,
-on fait défiler le contenu dans la fenêtre. Le bouton plein écran de l'en-tête affiche le même contenu sur
-toute la fenêtre (tout l'écran sur Android) ; **Échap** permet d'en sortir, ou la touche Retour sur Android.
+Tout ce qui est copié sur un appareil appairé est conservé dans la chronologie du presse-papiers — sur le
+PC, la tablette et le téléphone. Touchez la tuile **Presse-papiers** dans *Appareils et synchronisation* :
+la chronologie occupe tout l'écran ; **Échap** (ou la touche Retour sur Android) ramène aux tuiles.
 Choisissez une entrée pour la coller à nouveau sur cet appareil ou l'envoyer à tous les appareils.
+**Envoyer le presse-papiers** permet de cocher une entrée, plusieurs ou toutes — le presse-papiers actuel
+et la chronologie — et de les envoyer d'un coup à tous les appareils connectés, de la plus ancienne à la
+plus récente.
 La chronologie reste en mémoire uniquement et est vidée à la fermeture de l'application.
 
 ### Envoyer des fichiers
@@ -540,7 +541,7 @@ absolus et les noms réservés de Windows sont rejetés d'emblée.
 
 ### Connecter vos appareils
 
-Sur l'ordinateur, ouvrez **Multi-appareils → Appareils et synchro → Générer un code
+Sur l'ordinateur, ouvrez **Multi-appareils → Appareils et synchro → Associer → Afficher mon code → Générer un code
 d'appairage** ; sur le téléphone, touchez **Scanner pour appairer** et visez le QR code.
 Les deux écrans affichent alors les mêmes six chiffres et six émojis — vérifiez qu'ils
 correspondent, confirmez des deux côtés, c'est fait.
