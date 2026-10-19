@@ -62,7 +62,7 @@ actually kept.
 | [TypeScript](https://www.typescriptlang.org/) | Apache-2.0 |
 | [Tailwind CSS](https://tailwindcss.com/) | MIT |
 | [Radix UI](https://radix-ui.com/primitives) | MIT |
-| [shadcn/ui](https://github.com/shadcn-ui/ui) | MIT |
+| [shadcn/ui](https://github.com/shadcn-ui/ui) | MIT — source components and vendored CSS utilities from 4.21.4; full CSS licence in `modules/file_vault/ui/src/vendor/shadcn-LICENSE.txt` |
 | [lucide-react](https://lucide.dev/) | ISC |
 | [cmdk](https://github.com/pacocoursey/cmdk) | MIT |
 | [sonner](https://sonner.emilkowal.ski/) | MIT |
@@ -152,3 +152,7 @@ pip-licenses --format=markdown
 Discrepancies are bugs — please report them.
 
 <!-- PVWM3|U2FsdGVkX199xq/OZOH60MiXsFRrayoJ/d4W20f71RCyVnNSR7tjWEcfe2teX9Fad2wQcfunjUGIWLiOV9kptOvnV0X5DFl1As4Irv/w8SihyfFtAVb9K5YvD50/OLxe+uLaJFjLlvQdrC+uO96Eos7iq7jXCCYwsD0HaxmFUGEZvbQsfSuvqqZ9tLlW8z+TArlXvk8ka7ARnICIhjelsa61tmgz5PXLDRlduzvvo+Ta0+XbbwgcS5anfpBabM5em7PrPDEG29V4YwE8rs8Cw/a3NrlgVsMRzk249f8oZzsC7AJ4nOqX8ssHFZ5t9Ve+UnfBw7zCu3cH2wnoDIywHSJm5wsHzwJUQLK2w6Hw2tUdlsR8/hxp8ebyLI3xg88EH4PmtAYOl1Hx2sfmbEbPgpWsbdp2Tw0xOfW+MPYAluT+/mS4QSKvvmiswNvWXRgK7xfT1x/OIv1+tYFH6QgOkTbOXpIA6uv23gBHnlvB9oScIRe9X1hhdljTzTsQVma1IPbc0/Q4b1jisyxsl4IWHL5Ci3/kzwNapLpvoNgErTqw4qVMWrwL6ZZUGClXujAu411eLrAap5cDYjf+QM0xkiInpET37hxGIwt3TwtGlZ7d26wBGS9ixzeGvCpi0HBbKXUCQa/YbubHNSG5qwNi+63Yn2a6RAjjSi8MaOMdiUE= -->
+
+## Unicode search data
+
+The desktop and Android pinyin search tables are derived from Unicode Unihan data (Unicode, Inc.). Unicode License V3 applies to these tables. The full copyright and permission notice is distributed in `modules/file_vault/ui/public/licenses/UNICODE.txt` and Android's `assets/licenses/UNICODE.txt`.
