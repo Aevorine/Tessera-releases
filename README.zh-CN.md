@@ -4,7 +4,7 @@
 
 在「设备与同步」主页或「收到的文件保存到」旁点击 **打开文件夹**，即可查看收到的文件。手机和平板端同样支持；系统文件管理器无法打开时，使用应用内文件列表查看、打开或分享文件。
 
-从 [GitHub Releases](https://github.com/Aevorine/Tessera/releases/latest) 下载已签名的 Windows 免安装版或安装包。0.1.44 默认从本仓库获取更新，可在设置里切换到镜像仓库 [Tessera-releases](https://github.com/Aevorine/Tessera-releases)；下载使用 16 连接分段、自适应块大小和断点续传，系统设置了代理时自动经代理下载，不设置应用带宽上限；实际速度取决于网络与 GitHub CDN。发行版保留最近两版。本版打包时未运行测试。
+从 [GitHub Releases](https://github.com/Aevorine/Tessera/releases/latest) 下载已签名的 Windows 免安装版或安装包。0.1.45 默认从本仓库获取更新，可在设置里切换到镜像仓库 [Tessera-releases](https://github.com/Aevorine/Tessera-releases)；下载使用 16 连接分段、自适应块大小和断点续传，系统设置了代理时自动经代理下载，不设置应用带宽上限；实际速度取决于网络与 GitHub CDN。发行版保留最近两版。本版打包时未运行测试。
 
 [English](README.md) · **简体中文** · [Français](README.fr.md) · [Español](README.es.md) · [Русский](README.ru.md) · [العربية](README.ar.md)
 
@@ -13,7 +13,7 @@
 **Tessera** —— 一个 Windows 上的多因素加密金库，同时带着密码管理、剪贴板历史、笔记、AI 助手和高速文件管理。
 所有东西共用一次解锁；除非你自己配置，数据不会离开这台电脑。
 
-> 状态：`0.1.44`，持续更新中。仅支持 Windows 10/11 x64 —— 指纹解锁、资源管理器
+> 状态：`0.1.45`，持续更新中。仅支持 Windows 10/11 x64 —— 指纹解锁、资源管理器
 > 集成、文件全局快捷键这几项直接依赖 Windows API。
 
 ---
