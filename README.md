@@ -4,11 +4,19 @@ Click a desktop clipboard history entry to copy its full stored content and show
 
 Received files are one click away: use **Open folder** on Devices & sync or beside the save location. The Android phone/tablet companion opens the selected folder in Files, with an in-app file browser when a system file manager cannot display it.
 
-Download the signed Windows portable application or installer from [GitHub Releases](https://github.com/Aevorine/Tessera/releases/latest). Version 0.1.48 uses this repository for application updates by default and can be switched to the [Tessera-releases](https://github.com/Aevorine/Tessera-releases) mirror in Settings. Downloads use 16 concurrent range connections, adaptive chunks and resume records, routed through the Windows system proxy when one is configured. There is no application bandwidth cap; throughput depends on your connection and GitHub's CDN. Releases retain the latest two versions. This release was packaged without running tests.
+Download the signed Windows portable application or installer from [GitHub Releases](https://github.com/Aevorine/Tessera/releases/latest). Version 0.1.52 uses this repository for application updates by default and can be switched to the [Tessera-releases](https://github.com/Aevorine/Tessera-releases) mirror in Settings. Downloads use 16 concurrent range connections, adaptive chunks and resume records, routed through the Windows system proxy when one is configured. There is no application bandwidth cap; throughput depends on your connection and GitHub's CDN. Releases retain the latest two versions. This release was packaged without running tests.
+
+0.1.52 fixes the recurring “The backend process restarted unexpectedly - please unlock again” message: the encrypted databases are no longer used by several threads at once (the cause of the backend crash), a single response that cannot be encoded no longer stops the backend, and any future unexpected exit is recorded in `logs/backend-exits.jsonl` under the app data folder. Devices & sync recovers from a silently dropped link in under a second: a device that reconnects over a new path replaces the dead connection immediately (previously up to about 36 s), every clipboard send checks the link, and the status stops showing Connected when nothing gets through.
+
+0.1.51 adds a configurable global Devices & sync shortcut (Ctrl+Alt+D by default). Change it in Settings → Shortcuts. Help now covers current shortcuts, search, remembered/default devices and file-engine login startup.
+
+0.1.51 fixes system-level file engine login startup: enabling the engine also enables its Windows startup approval, and status reporting detects Task Manager disablement instead of treating a registered command as enabled. The engine starts independently after Windows sign-in.
+
+0.1.51: Devices & sync remembers the last single/multiple-device selection and offers a default sending device. Files, folders and manual clipboard sends share the selected targets; automatic clipboard sync uses only the configured default device. Offline selections are retained without redirection or deferred sends.
 
 Version 0.1.47 adds shared local search for passwords, recovery codes, clipboard history and devices: pinyin, field qualifiers, phrases, exclusions and approximate matching when exact results are absent. History adds time ranges and usage sorting; devices combine connection state, device type and latency sorting. Search queries stay in page-session memory. Android phone/tablet search covers paired and nearby devices, transfers, received file names and clipboard previews, with direct open/copy actions. [Search behavior and limits](docs/search-workspace.md).
 
-Version 0.1.48 makes finding things faster: Ctrl+F or / jumps to the search box of the current page, ↑ ↓ move through results while you keep typing, and Enter opens the result (in clipboard history Enter copies it). Devices & sync gets one search box for devices, transfers, sync history and functions, with grouped, highlighted results that open the matching panel. Recovery codes open the first match automatically, history rows show short local times, and toolbars that run out of room collapse to icons with hover names instead of clipping.
+Version 0.1.51 makes finding things faster: Ctrl+F or / jumps to the search box of the current page, ↑ ↓ move through results while you keep typing, and Enter opens the result (in clipboard history Enter copies it). Devices & sync gets one search box for devices, transfers, sync history and functions, with grouped, highlighted results that open the matching panel. Recovery codes open the first match automatically, history rows show short local times, and toolbars that run out of room collapse to icons with hover names instead of clipping.
 
 **English** · [简体中文](README.zh-CN.md) · [Français](README.fr.md) · [Español](README.es.md) · [Русский](README.ru.md) · [العربية](README.ar.md)
 
@@ -23,7 +31,7 @@ toolbox of the small utilities Windows buries several clicks deep.
 Nothing is uploaded, nothing phones home, and nothing leaves your machine unless you
 explicitly configure it to.
 
-> Status: `0.1.48`, under active development. Windows 10/11 x64 only — several features
+> Status: `0.1.52`, under active development. Windows 10/11 x64 only — several features
 > (Windows Hello, shell integration, global file hotkeys) are bound to Windows APIs.
 
 ---
