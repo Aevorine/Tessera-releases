@@ -4,9 +4,9 @@ Click a desktop clipboard history entry to copy its full stored content and show
 
 Received files are one click away: use **Open folder** on Devices & sync or beside the save location. The Android phone/tablet companion opens the selected folder in Files, with an in-app file browser when a system file manager cannot display it.
 
-Download the signed Windows portable application or installer from [GitHub Releases](https://github.com/Aevorine/Tessera/releases/latest). Version 0.1.56 uses this repository for application updates by default and can be switched to the [Tessera-releases](https://github.com/Aevorine/Tessera-releases) mirror in Settings. Downloads use 16 concurrent range connections, adaptive chunks and resume records, routed through the Windows system proxy when one is configured. There is no application bandwidth cap; throughput depends on your connection and GitHub's CDN. Releases retain the latest two versions. This release was packaged without running tests.
+Download the signed Windows portable application or installer from [GitHub Releases](https://github.com/Aevorine/Tessera/releases/latest). Version 0.1.57 uses this repository for application updates by default and can be switched to the [Tessera-releases](https://github.com/Aevorine/Tessera-releases) mirror in Settings. Downloads use 16 concurrent range connections, adaptive chunks and resume records, routed through the Windows system proxy when one is configured. There is no application bandwidth cap; throughput depends on your connection and GitHub's CDN. Releases retain the latest two versions. This release was packaged without running tests.
 
-0.1.56 fixes the unlock order: on Windows the login screen now starts with face or fingerprint (then password, authenticator, e-mail, recovery key) and hides methods this PC or vault cannot use; on Android the “verify when opening” lock now covers the app every time it returns from the background, in the order face/fingerprint → app password → screen-lock PIN.
+0.1.57 fixes the Android device name that turned into "正在启动同步服务…" after reopening the app, speeds up transfers (Android holds a low-latency Wi-Fi lock and a wake lock while bytes move; receivers write to disk off the network loop; senders hash in parallel — 130–197 → 306–315 MB/s over loopback), removes simple mode on Windows, and lets you drag sidebar entries and Android tiles to reorder them and close any block on any device (restore in Settings › Appearance or on the Android "This device" panel).
 
 0.1.53 keeps the system-level file shortcuts (Ctrl+C / Ctrl+X / Ctrl+V / Delete) enabled across restarts — stopping the engine no longer removes its startup entry, and a removed entry (for example by 360 Total Security's startup manager) is restored on the next launch, with a notice. File sending in Devices & sync survives connection drops and reconnects: each file waits for the device and resumes from the received chunks, and a file for a device that stays offline waits in an outbox and is sent as soon as it reconnects. A dead link is noticed while idle in about 2 s between PCs and announced at once. The File Manager supports drag and drop (move, copy, drag out to Explorer, drop in from Explorer). A redacted structured log under the app data folder can be queried without unlocking via `tessera logs` or the MCP tool `tessera_logs` (see [docs/logging.md](docs/logging.md)).
 
@@ -33,7 +33,7 @@ toolbox of the small utilities Windows buries several clicks deep.
 Nothing is uploaded, nothing phones home, and nothing leaves your machine unless you
 explicitly configure it to.
 
-> Status: `0.1.56`, under active development. Windows 10/11 x64 only — several features
+> Status: `0.1.57`, under active development. Windows 10/11 x64 only — several features
 > (Windows Hello, shell integration, global file hotkeys) are bound to Windows APIs.
 
 ---
