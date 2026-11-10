@@ -4,7 +4,9 @@ Click a desktop clipboard history entry to copy its full stored content and show
 
 Received files are one click away: use **Open folder** on Devices & sync or beside the save location. The Android phone/tablet companion opens the selected folder in Files, with an in-app file browser when a system file manager cannot display it.
 
-Download the signed Windows portable application or installer from [GitHub Releases](https://github.com/Aevorine/Tessera/releases/latest). Version 0.1.57 uses this repository for application updates by default and can be switched to the [Tessera-releases](https://github.com/Aevorine/Tessera-releases) mirror in Settings. Downloads use 16 concurrent range connections, adaptive chunks and resume records, routed through the Windows system proxy when one is configured. There is no application bandwidth cap; throughput depends on your connection and GitHub's CDN. Releases retain the latest two versions. This release was packaged without running tests.
+Download the signed Windows portable application or installer from [GitHub Releases](https://github.com/Aevorine/Tessera/releases/latest). Version 0.1.58 uses this repository for application updates by default and can be switched to the [Tessera-releases](https://github.com/Aevorine/Tessera-releases) mirror in Settings. Downloads use 16 concurrent range connections, adaptive chunks and resume records, routed through the Windows system proxy when one is configured. There is no application bandwidth cap; throughput depends on your connection and GitHub's CDN. Releases retain the latest two versions. This release was packaged without running tests.
+
+0.1.58 fixes the Devices & sync link that kept dropping and left content unsynced: with its screen off a phone only answers late, but the PC closed the connection after 1.4 seconds and needed 6–13 seconds to reconnect (192 times in three days on the affected PC). An idle link to a phone is now closed only after 20 seconds without a single byte, content copied meanwhile arrives over the same connection when the phone wakes, and two PCs still detect a dead link in about 3.4 seconds. A device that is away no longer flickers between "connecting" and "offline", and "last seen" is correct for devices that dial in. Idle CPU use drops: the sync service from about 5.5 % of a core to near zero (one adapter-table read, change notices from Windows) and the backend from about 10 % to 0.16 % (no process listing while the foreground window stays the same); each database's write-ahead log is capped at 4 MB. The Devices & sync home groups its tiles into Devices, Sync & transfers, and Connection. See the [0.1.58 release notes](docs/release-notes-v0.1.58.md).
 
 0.1.57 fixes the Android device name that turned into "正在启动同步服务…" after reopening the app, speeds up transfers (Android holds a low-latency Wi-Fi lock and a wake lock while bytes move; receivers write to disk off the network loop; senders hash in parallel — 130–197 → 306–315 MB/s over loopback), removes simple mode on Windows, and lets you drag sidebar entries and Android tiles to reorder them and close any block on any device (restore in Settings › Appearance or on the Android "This device" panel).
 
@@ -33,7 +35,7 @@ toolbox of the small utilities Windows buries several clicks deep.
 Nothing is uploaded, nothing phones home, and nothing leaves your machine unless you
 explicitly configure it to.
 
-> Status: `0.1.57`, under active development. Windows 10/11 x64 only — several features
+> Status: `0.1.58`, under active development. Windows 10/11 x64 only — several features
 > (Windows Hello, shell integration, global file hotkeys) are bound to Windows APIs.
 
 ---
